@@ -1,4 +1,4 @@
-export function sumArray(arr: number[]) {
+export function sumArray(arr: readonly number[]) {
   return arr.reduce((prev, curr) => prev + curr, 0);
 }
 
