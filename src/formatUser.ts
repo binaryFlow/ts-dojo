@@ -5,7 +5,7 @@ interface User {
 }
 
 export function formatUser(user: User) {
-  return `User #${user.id}: ${user.name} ${user.isAdmin ?? `(Admin)`}`;
+  return `User #${user.id}: ${user.name} ${user.isAdmin ? "(Admin)" : ""}`;
 }
 
 const user: User = { id: 1, name: "test", isAdmin: true };
