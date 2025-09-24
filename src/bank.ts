@@ -4,6 +4,7 @@ abstract class Account {
   constructor(public owner: string) {}
 
   deposit(amount: number): void {
+    if (amount <= 0) throw new Error("Invalid amount");
     this.balance += amount;
   }
 
@@ -16,7 +17,7 @@ abstract class Account {
 
 export class CheckingAccount extends Account {
   withdraw(amount: number): void {
-    if (amount < 1) throw new Error("Invalid amount");
+    if (amount <= 0) throw new Error("Invalid amount");
     if (this.balance < amount) throw new Error("Insufficient funds");
     this.balance -= amount;
   }
@@ -24,8 +25,9 @@ export class CheckingAccount extends Account {
 
 export class SavingsAccount extends Account {
   withdraw(amount: number): void {
-    if (this.balance - amount < 100) throw new Error("Invalid amount");
-    if (this.balance < amount) throw new Error("Insufficient funds");
+    if (amount <= 0) throw new Error("Invalid amount");
+    if (this.balance < amount || this.balance - amount < 100)
+      throw new Error("Insufficient funds");
     this.balance -= amount;
   }
 }
